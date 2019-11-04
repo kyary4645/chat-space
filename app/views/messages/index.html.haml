@@ -1,0 +1,22 @@
+.header
+  .header__logo
+  グループを作成しました
+.contents
+  .contents__menu
+    .contents__menu__user
+      test-user
+      .contents__menu__user__option
+        =link_to "/", class: "contents__menu__user__option" do
+          =fa_icon 'edit'
+        =link_to "/", class: "contents__menu__user__option" do
+          =fa_icon 'cog'
+
+    .contents__menu__group
+      test-group
+  .contents__main
+    .contents__main__group
+      test-group
+    .contents__main__chatspace
+      test-user
+    .contents__main__send
+      type a message

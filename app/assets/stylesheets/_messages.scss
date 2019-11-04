@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  background-color: #38aef0;
+  color: #ffffff;
+  text-align: center;
+}
+.contents {
+  display: flex;
+  &__menu {
+    width: 300px;
+    color: #ffffff;
+    &__user {
+      height: 100px;
+      background-color: #253141;
+      line-height: 100px;
+      font-size: 16px;
+      padding: 0 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      &__option {
+        text-decoration: none;
+        color: #ffffff;
+      }
+    }
+    &__group {
+      height: calc(100vh - 100px);
+      background-color: #2f3e51;
+      font-size: 15px;
+      line-height: 100px;
+      padding: 0 20px;
+    }
+  }
+  &__main {
+    height: 100%;
+    width: calc(100vw - 300px);
+    background-color: #ffffff;
+    &__group {
+      height: 99px;
+      border-bottom: 1px solid #eeeeee;
+      font-size: 20px;
+      line-height: 100px;
+    }
+    &__chatspace {
+      height: calc(100vh - 100px - 90px);
+      background-color: #fafafa;
+      color: #434a54;
+      font-size: 16px;
+    }
+  }
+}
