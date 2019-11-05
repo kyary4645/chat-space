@@ -1,6 +1,6 @@
 .header
   .header__logo
-  グループを作成しました
+    グループを作成しました
 .contents
   .contents__menu
     .contents__menu__user
@@ -10,13 +10,49 @@
           =fa_icon 'edit'
         =link_to "/", class: "contents__menu__user__option" do
           =fa_icon 'cog'
-
     .contents__menu__group
-      test-group
+      =link_to "/", class: "contents__menu__group__name" do
+        test-group
+      =link_to "/", class: "contents__menu__group__newmessage" do
+        おはよございます
+      =link_to "/", class: "contents__menu__group__name" do
+        sample-group
+      =link_to "/", class: "contents__menu__group__newmessage" do
+        こんにちは
+      =link_to "/", class: "contents__menu__group__name" do
+        example
+      =link_to "/", class: "contents__menu__group__newmessage" do
+        まだメッセージはありません
   .contents__main
     .contents__main__group
-      test-group
-    .contents__main__chatspace
-      test-user
-    .contents__main__send
-      type a message
+      .contents__main__group__name
+        test-group
+        .contents__main__group__name__member
+          Member : test-user
+      =link_to "/", class: "contents__main__group__btn" do
+        Edit
+    .contents__main__chat
+      .contents__main__chat__info
+        .contents__main__chat__info__name
+          test-user
+        .contents__main__chat__info__date
+          2019/11/04(Mon) 16:00:08
+      .contents__main__chat__comment
+        おはよございます
+
+      .contents__main__chat__info
+        .contents__main__chat__info__name
+          sample-user
+        .contents__main__chat__info__date
+          2019/11/04(Mon) 16:12:47
+      .contents__main__chat__comment
+        こんにちは
+
+    .contents__main__bottom
+      %form{:class => "contents__main__bottom__input", :action => '', :method => "post"}
+      .contents__main__bottom__input__form
+        %input{:type => "text", :placeholder => "type a message", :class => "contents__main__bottom__input__form__message"}
+          %label{:class => "contents__main__bottom__input__form__message__image", :for => "message-image"}
+            =fa_icon 'image'
+            %input{:type => "file", :class => "contents__main__bottom__input__form__message__image--false", :id => "message-image"}
+      %input{:type => "submit", :value => "Send", :class => "contents__main__bottom__submit"}
