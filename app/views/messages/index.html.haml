@@ -1,28 +1,21 @@
-.header
-  .header__logo
-    グループを作成しました
 .contents
   .contents__menu
     .contents__menu__user
-      test-user
+      = curent_user.neme
       .contents__menu__user__option
-        =link_to "/", class: "contents__menu__user__option" do
+        =link_to new_group_path, class: "contents__menu__user__option" do
           =fa_icon 'edit'
         =link_to edit_user_path(current_user), class: "contents__menu__user__option" do
           =fa_icon 'cog'
     .contents__menu__group
-      =link_to "/", class: "contents__menu__group__name" do
-        test-group
-      =link_to "/", class: "contents__menu__group__newmessage" do
-        おはよございます
-      =link_to "/", class: "contents__menu__group__name" do
-        sample-group
-      =link_to "/", class: "contents__menu__group__newmessage" do
-        こんにちは
-      =link_to "/", class: "contents__menu__group__name" do
-        example
-      =link_to "/", class: "contents__menu__group__newmessage" do
-        まだメッセージはありません
+      - current_user.groups.each do |group|
+      .group
+        = link_to '#' do
+          .group__name
+            = group.name
+          .group__message
+            メッセージはまだありません。
+
   .contents__main
     .contents__main__group
       .contents__main__group__name

@@ -1,9 +1,3 @@
-.header {
-  width: 100%;
-  background-color: $lightblue;
-  color: $white;
-  text-align: center;
-}
 .contents {
   display: flex;
   height: 100%;
@@ -25,24 +19,22 @@
         color: $white;
       }
     }
-    &__group {
-      height: calc(100vh - 144px);
-      background-color: #2f3e51;
-      padding: 20px 20px 0;
-      font-weight: bold;
-      &__name {
-        font-size: 15px;
-        padding-bottom: 5px;
-        display: block;
-        text-decoration: none;
-        color: $white;
-      }
-      &__newmessage {
-        font-size: 11px;
-        margin-bottom: 40px;
-        display: block;
-        text-decoration: none;
-        color: $white;
+    .groups {
+      background-color: $side_blue_light;
+      height: calc(100vh - 100px);
+      padding: 0 20px;
+      .group {
+        box-sizing: border-box;
+        padding: 20px 0 40px;
+        &__name {
+          color: $white;
+          font-size: $side_group_name;
+        }
+        &__message {
+          color: $white;
+          font-size: $side_group_message;
+          margin-top: 5px;
+        }
       }
     }
   }
