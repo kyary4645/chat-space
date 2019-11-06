@@ -1,51 +1,28 @@
-.contents
-  .contents__menu
-    .contents__menu__user
-      = curent_user.neme
-      .contents__menu__user__option
-        =link_to new_group_path, class: "contents__menu__user__option" do
-          =fa_icon 'edit'
-        =link_to edit_user_path(current_user), class: "contents__menu__user__option" do
-          =fa_icon 'cog'
-    .contents__menu__group
-      - current_user.groups.each do |group|
-      .group
-        = link_to '#' do
-          .group__name
-            = group.name
-          .group__message
-            メッセージはまだありません。
+.wrapper
+  = render "template/side_bar"
+  
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          = @group.name
+        .left-header__members
+          Member :
+          .member
+            - @group.users.each do |user|
+              = user.name
+      .right-header
+        =link_to edit_group_path(current_user), class: "right-header__button" do
+          Edit
 
-  .contents__main
-    .contents__main__group
-      .contents__main__group__name
-        test-group
-        .contents__main__group__name__member
-          Member : test-user
-      =link_to "/", class: "contents__main__group__btn" do
-        Edit
-    .contents__main__chat
-      .contents__main__chat__info
-        .contents__main__chat__info__name
-          test-user
-        .contents__main__chat__info__date
-          2019/11/04(Mon) 16:00:08
-      .contents__main__chat__comment
-        おはよございます
+    .messages
+      = render @messages
 
-      .contents__main__chat__info
-        .contents__main__chat__info__name
-          sample-user
-        .contents__main__chat__info__date
-          2019/11/04(Mon) 16:12:47
-      .contents__main__chat__comment
-        こんにちは
-
-    .contents__main__bottom
-      %form{:class => "contents__main__bottom__input", :action => '', :method => "post"}
-      .contents__main__bottom__input__form
-        %input{:type => "text", :placeholder => "type a message", :class => "contents__main__bottom__input__form__message"}
-          %label{:class => "contents__main__bottom__input__form__message__image", :for => "message-image"}
-            =fa_icon 'image'
-            %input{:type => "file", :class => "contents__main__bottom__input__form__message__image--false", :id => "message-image"}
-      %input{:type => "submit", :value => "Send", :class => "contents__main__bottom__submit"}
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
