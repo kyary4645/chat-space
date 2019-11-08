@@ -10,6 +10,9 @@ $(function(){
                     </div>
                   </div>
                   <div clas =lower-message>
+                    <p class = lower-message__content >
+                      ${message.content}
+                    </p>
                   </div>
                 </div>`
     return html;
@@ -30,8 +33,11 @@ $(function(){
     .done(function(data) {
       var html = buildHTML(data);
       $('.message').append(html);
-      $('.form__message').val('');
+      $('.form__message').reset('');
       $('.form__submit').prop('disabled', false);
     })
-  })
+    .fail(function() {
+      alert("メッセージ送信に失敗しました");
+    });
+  });
 });
