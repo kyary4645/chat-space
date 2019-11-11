@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message) {
     var image = message.image ? `<img class = lower-message__image, src=${message.image} >` : ' '
     
-    var html = `<div class = message >
+    var html = `<div class = message data-id=${message.id}>
                   <div class = upper-message >
                     <div class = upper-message__user-name>
                       ${message.user_name}
@@ -45,5 +45,33 @@ $(function(){
       alert("メッセージ送信に失敗しました");
       $('.form__submit').prop('disabled', false);
     });
+  });
+
+  $(window).on('load',function() {
+    if(document.URL.match('/groups/', '/messages')){
+      var reloadMessages = function() {
+        var last_message_id = $('.message:last').data('id')
+        // console.log(last_message_id)
+        $.ajax({
+          url: 'api/messages',
+          type: 'GET',
+          dataType: 'json',
+          data: {id: last_message_id},
+        })
+        .done(function(messages) {
+          // console.log(messages)
+          var insertHTML = '';
+          messages.forEach(function(message) {
+            insertHTML = buildHTML(message);
+            $('.messages').append(insertHTML);
+            $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+          })
+        })
+        .fail(function() {
+          console.log('error');
+        });
+      };
+      setInterval(reloadMessages, 5000);
+    }
   });
 });
