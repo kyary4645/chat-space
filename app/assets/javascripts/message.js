@@ -50,7 +50,6 @@ $(function(){
     if(document.URL.match('/groups/', '/messages')){
       var reloadMessages = function() {
         var last_message_id = $('.message:last').data('id')
-        // console.log(last_message_id)
         $.ajax({
           url: 'api/messages',
           type: 'GET',
@@ -58,7 +57,6 @@ $(function(){
           data: {id: last_message_id},
         })
         .done(function(messages) {
-          // console.log(messages)
           var insertHTML = '';
           messages.forEach(function(message) {
             insertHTML = buildHTML(message);
@@ -67,7 +65,7 @@ $(function(){
           })
         })
         .fail(function() {
-          console.log('error');
+          alert('error');
         });
       };
       setInterval(reloadMessages, 5000);
