@@ -47,7 +47,7 @@ $(function(){
   });
 
   $(window).on('load',function() {
-    if(document.URL.match('/groups/', '/messages')){
+    if(document.URL.match('/groups/' && '/messages')){
       var reloadMessages = function() {
         var last_message_id = $('.message:last').data('id')
         $.ajax({
